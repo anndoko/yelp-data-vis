@@ -48,13 +48,10 @@ function barPrimary(viz4data1) {
     	.range([0, width])
     	.padding(0.1);
 
-
     var yScale = d3.scaleLinear()
     	.range([height, 0])
     	.domain(d3.extent(viz4data1, function(d) { return +d.zreview_count_all; })).nice()
-  	// var yScale = d3.scaleLinear()
-   //  	.domain([d3.min(viz4data1, function(d) { return +d.zreview_count_all; }), d3.max(viz4data1, function(d) { return +d.zreview_count_all; })])
-   //  	.range([(height/2), 0]);
+  	
 
    	var svg = d3.select('#viz4-1').append('svg')
    		.attr('width', width + margin.left + margin.right)
@@ -62,22 +59,6 @@ function barPrimary(viz4data1) {
    		.append('g')
    			.attr("transform",
         	"translate(" + margin.left + "," + margin.top + ")");
-
-    barY = function(d) {
-    	if (+d.zreview_count_all < 0) {
-    		return height/2
-    	} else {
-    		return (height/2) - yScale(+d.zreview_count_all);
-    	}
-    }
-
-    barHeight = function(d) {
-    	if (+d.zreview_count_all < 0) {
-    		return yScale((-1 * +d.zreview_count_all));
-    	} else {
-    		return yScale(+d.zreview_count_all);
-    	}
-    }
 
     //Chart
     svg.selectAll('.bar-primary')
@@ -88,8 +69,8 @@ function barPrimary(viz4data1) {
     	.attr('fill', 'navy-blue')
     	.attr('x', function(d) { return xScale(d.business_id); })
     	.attr('width', xScale.bandwidth())
-    	.attr("y", function(d) { return height - yScale(Math.min(0, +d.zreview_count_all)); })
-    	.attr("height", function(d) { return Math.abs(yScale(+d.zreview_count_all) - yScale(0)); })
+    	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
+    	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
 
    	//Labels
    	svg.selectAll('text.bar-label')
