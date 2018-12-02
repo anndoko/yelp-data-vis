@@ -1,4 +1,43 @@
-div#viz4-1 {
-	height: 60em;
-	margin: 20px;
+
+
+
+.container-fluid {
+	width: 98%;
+	margin: 0 auto;
+}
+
+div#viz4-1, .secondary-bar {
+	height: 30em;
+	margin-top: 2em;
+}
+
+.secondary-bar {
+	height: 20em;
+	margin-top: 1em;
+}
+
+
+/*Bars proper*/
+
+.bar--positive {
+	fill: #208C61;
+}
+
+.bar--negative {
+	fill: #2D408C;
+}
+
+/*Axes and zero line*/
+line, .axis path  {
+	stroke: #B0B0B0;
+}
+
+/*Axis text */
+.axis text {
+	fill: #666666;
+}
+
+/*Chart text*/
+text.label {
+	fill: #666666;
 }
