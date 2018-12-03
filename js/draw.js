@@ -51,6 +51,13 @@ var y_density = d3.scale.linear()
 function loadMapVis() {
   d3.csv("data/data_clean.csv", function(data){
 
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<strong>" + d["review_count"] + " Reviews on Yelp</strong>" ;
+      })
+
     var svg = d3.select("#map-vis")
       .append("svg")
       .attr("width", width)
@@ -73,7 +80,7 @@ function loadMapVis() {
       .attr("cy",function(d) {
         return projection([d["coordinates.longitude"], d["coordinates.latitude"]])[1];
       })
-      .attr("r","2px")
+      .attr("r","2.5px")
       .style("fill",function(d){
         if (d["is_claimed"]==="True"){
           return "#D22322";
@@ -81,6 +88,10 @@ function loadMapVis() {
           return "#C6C6C6";
         }
       })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+      svg.call(tip);
   });
 }
 
