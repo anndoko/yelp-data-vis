@@ -58,7 +58,7 @@ function loadMapVis() {
 
     var projection = d3.geo.mercator()
       .center([-112.074036, 33.448376])
-      .scale(50000)
+      .scale(100000)
       .translate([width/2, height/2]);
 
     var circles = svg.selectAll("circle")
@@ -76,9 +76,9 @@ function loadMapVis() {
       .attr("r","2px")
       .style("fill",function(d){
         if (d["is_claimed"]==="True"){
-          return "black";
+          return "#D22322";
         } else {
-          return "red";
+          return "#C6C6C6";
         }
       })
   });
