@@ -22,7 +22,36 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
   </head>
   <body>
+    <h1>Can Yelp Reviews predict restaurant's closure?</h1>
+    <p>Yelp reviews contain rich data about the place, it's ambience, star rating, photos and other factors.
+      Can this data be used to predict whether a restaurant is going to close?
+      Let's see.</p>
+    <p>In this series of visualisations, we will walk you through some key factors that influence a restaurant's closure. We use data from Yelp reviews for restaurants in Pheonix, AZ. We will show you both open and closed restaurants to help you understand what is happening.</p>
     <section id="map-vis">
+      <p>You might except to see a trend when you look at a map of the city. Maybe the restaurants closing are based more in downtown, maybe they are near an expensive location. Taking a look at the map of Pheonix below, we can't really make out a trend.</p>
     </section>
+
+    <section id="star-ratings">
+      <p>One might expect that the restaurants that have closed are all the ones with a low star ratings. After all, when we don't like a place we leave a low rating and the restaurant loses business. However, this is not the case! Star ratings of closed restarants vary across the spectrum!</p>
+    </section>
+
+    <section id="density-vis">
+      <p>What does matter is the density of restaurants. If a restaurant is in an area which a many other restaurants (ex: downtown), it has a high rate of closure. This makes sense since it faces severe competition from it's neighbours.</p>
+
+      <p>However, there is an interesting behaviour here. If we compare restaurant density of similar restaraunts (ex: chinatown), we don't see the earlier behaviour. Our graphs change to show that if a restaurant is in an area where other similar restarants exist, it is less likely to close.</p>
+    </section>
+
+    <div id="option">
+      <input name="updateButton"
+             type="button"
+             value="Density"
+             onclick="updateData(this)" />
+
+       <input name="updateButton"
+              type="button"
+              value="Similar Density"
+              onclick="updateData(this)" />
+    </div>
+
   </body>
 </html>
