@@ -51,6 +51,13 @@ var y_density = d3.scale.linear()
 function loadMapVis() {
   d3.csv("data/data_clean.csv", function(data){
 
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(function(d) {
+        return "<strong>" + d["review_count"] + " Reviews on Yelp</strong>" ;
+      })
+
     var svg = d3.select("#map-vis")
       .append("svg")
       .attr("width", width)
@@ -58,7 +65,7 @@ function loadMapVis() {
 
     var projection = d3.geo.mercator()
       .center([-112.074036, 33.448376])
-      .scale(50000)
+      .scale(100000)
       .translate([width/2, height/2]);
 
     var circles = svg.selectAll("circle")
@@ -73,14 +80,18 @@ function loadMapVis() {
       .attr("cy",function(d) {
         return projection([d["coordinates.longitude"], d["coordinates.latitude"]])[1];
       })
-      .attr("r","2px")
+      .attr("r","2.5px")
       .style("fill",function(d){
         if (d["is_claimed"]==="True"){
-          return "black";
+          return "#D22322";
         } else {
-          return "red";
+          return "#C6C6C6";
         }
       })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+      svg.call(tip);
   });
 }
 
