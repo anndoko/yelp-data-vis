@@ -83,7 +83,7 @@ function loadMapVis() {
       .attr("cy",function(d) {
         return projection([d["coordinates.longitude"], d["coordinates.latitude"]])[1];
       })
-      .attr("r","2.5px")
+      .attr("r","4px")
       .style("fill",function(d){
         if (d["is_claimed"]==="True"){
           return "#D22322";

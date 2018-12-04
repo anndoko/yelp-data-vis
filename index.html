@@ -30,11 +30,18 @@
       Let's see.</p>
     <p>In this series of visualisations, we will walk you through some key factors that influence a restaurant's closure. We use data from Yelp reviews for restaurants in Pheonix, AZ. We will show you both open and closed restaurants to help you understand what is happening.</p>
     <section id="map-vis">
+      <h2>No trends on the map</h2>
       <p>You might except to see a trend when you look at a map of the city. Maybe the restaurants closing are based more in downtown, maybe they are near an expensive location. Taking a look at the map of Pheonix below, we can't really make out a trend.</p>
     </section>
 
     <section id="star-ratings">
+      <h2>Star ratings do not predict closure</h2>
       <p>One might expect that the restaurants that have closed are all the ones with a low star ratings. After all, when we don't like a place we leave a low rating and the restaurant loses business. However, this is not the case! Star ratings of closed restarants vary across the spectrum!</p>
+    </section>
+    <section id="price">
+      <h2>Relative price can predict closure</h2>
+      <p>One might expect that price is a good indicator for predicting closure. This is somewhat true. The absolute price DOES NOT matter. That is to say it's easually likely for an expensive and a cheap restaurant to close down. However, relative price matters (relative to it's neighbours within 1 mile radius). Thus, expensive restaurants in areas with cheaper restaurants are more likely to close. </p>
+      <img src="img/chart_2.png" style="max-width:100%"></img>
     </section>
     <section id="review-vis">
       <!-- <div class="container-fluid"> -->
@@ -64,13 +71,19 @@
         </div> -->
       <!-- </div> -->
     </section>
+    <section id="reviews">
+      <h2>Relative Review Counts can also predict closure</h2>
+      <p>Relative Review Count is an indicator of the number of reviews recieved relative to the restaurant's neighbours that are within a 1 mile radius. This is a good predictor of restaurant closure. </p>
+      <img src="img/chart_4.png" style="max-width:100%"></img>
+    </section>
 
     <section id="density-vis">
+      <h2>Density of surrounding restaurants is a good predictor of closure, although not for Chinatown</h2>
       <p>What does matter is the density of restaurants. If a restaurant is in an area which a many other restaurants (ex: downtown), it has a high rate of closure. This makes sense since it faces severe competition from it's neighbours.</p>
 
       <p>However, there is an interesting behaviour here. If we compare restaurant density of similar restaraunts (ex: chinatown), we don't see the earlier behaviour. Our graphs change to show that if a restaurant is in an area where other similar restarants exist, it is less likely to close.</p>
 
-      <div id="option">
+      <div id="option" style="text-align: center;">
         <input name="updateButton"
                type="button"
                value="Density"
