@@ -24,45 +24,29 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
   </head>
   <body>
+
     <h1 class="title">Can Yelp Reviews predict restaurant closures?</h1>
+
     <p>Yelp reviews contain rich data about the place, it's ambience, star rating, photos and other factors.
       Can this data be used to predict whether a restaurant is going to close?
       Let's see.</p>
+
     <p>In this series of visualisations, we will walk you through some key factors that influence a restaurant's closure. We use data from Yelp reviews for restaurants in Pheonix, AZ. We will show you both open and closed restaurants to help you understand what is happening.</p>
+
     <section id="map-vis">
       <p>You might except to see a trend when you look at a map of the city. Maybe the restaurants closing are based more in downtown, maybe they are near an expensive location. Taking a look at the map of Pheonix below, we can't really make out a trend.</p>
+    </section>
+
+    <section id="price-vis">
+      <img width="100%" src="img/chart_2.png"/>
     </section>
 
     <section id="star-ratings">
       <p>One might expect that the restaurants that have closed are all the ones with a low star ratings. After all, when we don't like a place we leave a low rating and the restaurant loses business. However, this is not the case! Star ratings of closed restarants vary across the spectrum!</p>
     </section>
+
     <section id="review-vis">
-      <!-- <div class="container-fluid"> -->
-        <!-- <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id='viz2'>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"  id='viz4-1'>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 secondary-bar"  id='viz4-2'>
-
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 secondary-bar"  id='viz4-3'>
-
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 secondary-bar"  id='viz4-4'>
-
-          </div>
-          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 secondary-bar"  id='viz4-5'>
-
-          </div>
-        </div> -->
-      <!-- </div> -->
+      <img width="100%" src="img/chart_4.png"/>
     </section>
 
     <section id="density-vis">
@@ -73,14 +57,14 @@
 
     <div id="option">
       <input name="updateButton"
-             type="button"
-             value="Density"
-             onclick="updateData(this)" />
+            type="button"
+            value="Density"
+            onclick="updateData(this)" />
 
-       <input name="updateButton"
-              type="button"
-              value="Similar Density"
-              onclick="updateData(this)" />
+      <input name="updateButton"
+            type="button"
+            value="Similar Density"
+            onclick="updateData(this)" />
     </div>
 
   </body>
