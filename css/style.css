@@ -43,3 +43,7 @@ body {
   top: 100%;
   left: 0;
 }
+
+.grey {
+  fill: #C6C6C6;
+}
