@@ -38,17 +38,18 @@ $(document).ready(function () {
   loadMapVis();
   createRateChart();
   //createReviewChart();
-  // createBarChart(allDensity);
+  createBarChart(allDensity);
 });
 
 var width = 800,
     height = 400,
-    barWidth = 50;
+    barWidth = 100,
+    padding = 50;
 
 // setting scale for density bar chart
 var y_density = d3.scaleLinear()
   .domain([0, 40])
-  .range([400, 0]);
+  .range([(height - padding), 0]);
 
 function loadMapVis() {
   d3.csv("data/data_clean.csv", function(data){
@@ -100,40 +101,63 @@ function loadMapVis() {
 // making the first bar chart
 function createBarChart(data) {
 
+  var title = (data[0].density == "all")? "Average Restaurant Density" : "Average Similar Restaurant Density"
+
+  // var xAxis = d3.svg.axis()
+  //   .scale(x)
+  //   .orient("bottom");
+
   var svg = d3.select("#density-vis")
     .append("svg")
     .attr("id", "density_svg")
     .attr("width", width)
     .attr("height", height);
 
+  svg.append("text")
+      .attr("x", -350)
+      .attr("y", 225)
+      .attr("dy", ".75em")
+      .attr("id", "y-title")
+      .text(title)
+      .attr("transform", "rotate(-90)");
+
   var bar = svg.selectAll("g")
       .data(data)
       .enter()
       .append("g")
       .attr("transform", function(d, i) {
-        return "translate(" + i * barWidth + ",0)";
+        return "translate(" + (i * barWidth + 270) + ",0)";
       });
 
   bar.append("rect")
       .attr("y", function(d) { return y_density(d.value); })
-      .attr("height", function(d) { return height - y_density(d.value); })
-      .attr("width", barWidth - 1)
+      .attr("height", function(d) { return height - padding - y_density(d.value); })
+      .attr("width", barWidth - 10)
       .attr("fill", function(d){
         if(d.isclosed){
-          return "#D22322";
-        }else{
           return "#C6C6C6";
+        }else{
+          return "#D22322";
         }
       });
 
   bar.append("text")
-      .attr("x", 10)
+      .attr("x", 2)
       .attr("y", function(d) { return y_density(d.value) - 15; })
       .attr("dy", ".75em")
       .text(function(d) { return d.value; });
+
+  bar.append("text")
+      .attr("x", 2)
+      .attr("y", 360)
+      .attr("dy", ".75em")
+      .text(function(d) { return (d.isclosed? "CLOSED" : "OPEN"); });
+
 }
 
 function updateBarChart(data) {
+
+  var title = (data[0].density == "all")? "Average Restaurant Density" : "Average Similar Restaurant Density";
   var bar = d3.select("#density_svg").selectAll("g").select("rect");
   var text = d3.select("#density_svg").selectAll("g").select("text");
 
@@ -141,17 +165,19 @@ function updateBarChart(data) {
 
   text.data(data)
 
+  d3.select("#y-title").text(title)
+
   bar.transition()
       .duration(500)
       .attr("y", function(d) {
         return y_density(d.value); })
       .attr("height", function(d) {
-        return height - y_density(d.value); })
+        return height - padding - y_density(d.value); })
       .attr("fill", function(d){
         if(d.isclosed){
-          return "#D22322";
-        }else{
           return "#C6C6C6";
+        }else{
+          return "#D22322";
         }
       });
 
