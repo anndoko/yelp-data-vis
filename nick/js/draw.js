@@ -42,7 +42,7 @@ function loadData() {
 function barPrimary(viz4data1) {
 
 	//Margin, scales, and canvas
-	var margin = { top: 0, right: 20, bottom: 100, left: 60 },
+	var margin = { top: 0, right: 20, bottom: 40, left: 40 },
         width = $('#viz4-1').width(),
         height = $('#viz4-1').height(),
         width = width - margin.left - margin.right,
@@ -163,7 +163,7 @@ function barPrimary(viz4data1) {
 function bar2(viz4data1) {
 
 	//Margin, scales, and canvas
-	var margin = { top: 0, right: 20, bottom: 100, left: 60 },
+	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-2').width(),
         height = $('#viz4-2').height(),
         width = width - margin.left - margin.right,
@@ -284,7 +284,7 @@ function bar2(viz4data1) {
 function bar3(viz4data1) {
 
 	//Margin, scales, and canvas
-	var margin = { top: 0, right: 20, bottom: 100, left: 60 },
+	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-3').width(),
         height = $('#viz4-3').height(),
         width = width - margin.left - margin.right,
@@ -405,7 +405,7 @@ function bar3(viz4data1) {
 function bar4(viz4data1) {
 
 	//Margin, scales, and canvas
-	var margin = { top: 0, right: 20, bottom: 100, left: 60 },
+	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-4').width(),
         height = $('#viz4-4').height(),
         width = width - margin.left - margin.right,
@@ -526,7 +526,7 @@ function bar4(viz4data1) {
 function bar5(viz4data1) {
 
 	//Margin, scales, and canvas
-	var margin = { top: 0, right: 20, bottom: 100, left: 60 },
+	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-5').width(),
         height = $('#viz4-5').height(),
         width = width - margin.left - margin.right,

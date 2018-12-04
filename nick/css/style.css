@@ -13,18 +13,23 @@ div#viz4-1, .secondary-bar {
 
 .secondary-bar {
 	height: 20em;
-	margin-top: 1em;
+	margin-top: -2em;
 }
 
-
+h2 {
+	margin-left: 1em;
+	margin-top: 1em;
+}
 /*Bars proper*/
 
 .bar--positive {
-	fill: #208C61;
+	fill: #D22322;
+	opacity: 0.8;
 }
 
 .bar--negative {
-	fill: #2D408C;
+	fill: #C6C6C6;
+	opacity: 0.8;
 }
 
 /*Axes and zero line*/
