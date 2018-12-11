@@ -3,6 +3,8 @@ $(document).ready(function() {
 
    	//Load the charts
 	loadData();
+
+  
 });
 
 
@@ -14,6 +16,10 @@ function loadData() {
 
 		//First 5 restaurants for viz4
 		group1 = ['Zy2vca7i9QFGRKa4m0C__A', 'yVQiGdxmnrkJDyQXv2maNA', 'ysPpFXooSEtwHkIdcOd4Kg','XkNQVTkCEzBrq7OlRHI11Q', 'XbVqzUHS3c9FhG4lI13c3Q']
+    group2 = ['eP2WTbTQDCLj6FPNd6Il5Q','I4bSn5gXsHuSPu7L-d_8nQ','GHYOl_cnERMOhkCK_mGAlA','FqzgT9Y-Yu7jiWdHnGW-kQ','7SO_rX1F6rQEl-5s3wZxgQ']
+    group3 = ['LYCaveWFti6kUHpMzYKLjA','TgxDGx7L_JICWbuBUCGVqw','oiLe3lqMFaZtsSpRuIUChw','JMZfcwARQ68n7GGsqmtdaA','Bui7TEFaPwuZtW5QQg2oFQ']
+    group4 = ['yggyuN3FV_NiQCKfvN-b-Q','VpW40mznMS43CqdbelX2wA','vvA3fbps4F9nGlAEYKk_sA','WS1z1OAR0tRl4FsjdTGUFQ','Tk2dSL0TwQeI_zNJmb442A']
+    group5 = ['2cMWbJvpxgmSAWoRQzcNIA','cN6aBxe2mQvrQlzk26LyRQ','IVc23uY-36WUNYoIbz42Fg','KPoTixdjoJxSqRSEApSAGg','Xq9tkiHhyN_aBFswFeGLvA']
 
 		//Filtered data on target restaurants, inspired by
 		//https://stackoverflow.com/questions/10615290/select-data-from-a-csv-before-loading-it-with-javascript-d3-library
@@ -23,24 +29,58 @@ function loadData() {
         	};
 
     	})
+    viz4data2 = d.filter(function(row) {
+          if(group2.indexOf(row['business_id']) > -1) {
+            return row;
+          };
+
+      })
+    viz4data3 = d.filter(function(row) {
+          if(group3.indexOf(row['business_id']) > -1) {
+            return row;
+          };
+
+      })
+    viz4data4 = d.filter(function(row) {
+          if(group4.indexOf(row['business_id']) > -1) {
+            return row;
+          };
+
+      })
+    viz4data5 = d.filter(function(row) {
+          if(group5.indexOf(row['business_id']) > -1) {
+            return row;
+          };
+
+      })
 
     	console.log(viz4data1);
 
 
     	barPrimary(viz4data1);
-    	bar2(viz4data1);
-    	bar3(viz4data1);
-    	bar4(viz4data1);
-    	bar5(viz4data1);
+    	bar2(viz4data2);
+    	bar3(viz4data3);
+    	bar4(viz4data4);
+    	bar5(viz4data5);
 
 
 	})
+
+
 }
 
 //Primary bar chart
 
 function barPrimary(viz4data1) {
 
+  var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([40, 0])
+        .html(function(d) {
+          return "<strong>" + d["review_count"] + " Reviews</strong>" ;
+        })
+
+  
 	//Margin, scales, and canvas
 	var margin = { top: 0, right: 20, bottom: 40, left: 40 },
         width = $('#viz4-1').width(),
@@ -76,6 +116,9 @@ function barPrimary(viz4data1) {
     	.attr('width', xScale.bandwidth())
     	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
     	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
+     
+
+
 
   	//Axes
   	//var xAxis = d3.axisBottom().scale(xScale)
@@ -162,6 +205,13 @@ function barPrimary(viz4data1) {
 
 function bar2(viz4data1) {
 
+  var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([40, 0])
+        .html(function(d) {
+          return "<strong>" + d["review_count"] + " Reviews</strong>" ;
+        })
+
 	//Margin, scales, and canvas
 	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-2').width(),
@@ -184,7 +234,10 @@ function bar2(viz4data1) {
    		.attr('height', height + margin.top + margin.bottom)
    		.append('g')
    			.attr("transform",
-        	"translate(" + margin.left + "," + margin.top + ")");
+        	"translate(" + margin.left + "," + margin.top + ")")
+      .call(tip);
+
+      
 
     //Chart
     svg.selectAll('.bar')
@@ -197,6 +250,10 @@ function bar2(viz4data1) {
     	.attr('width', xScale.bandwidth())
     	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
     	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
+
+    d3.selectAll('.bar')
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
   	//Axes
   	//var xAxis = d3.axisBottom().scale(xScale)
@@ -220,7 +277,7 @@ function bar2(viz4data1) {
 	//Y axis group
 	svg.append("g")
 		.attr("class","axis y-axis")
-		.call(yAxis.ticks(3));
+		.call(yAxis.ticks(2));
 
 
 	barX = function(d) { return xScale(d.business_id); };
@@ -283,6 +340,14 @@ function bar2(viz4data1) {
 
 function bar3(viz4data1) {
 
+  var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([40, 0])
+        .html(function(d) {
+          return "<strong>" + d["review_count"] + " Reviews</strong>" ;
+        })
+
+
 	//Margin, scales, and canvas
 	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
         width = $('#viz4-3').width(),
@@ -318,6 +383,7 @@ function bar3(viz4data1) {
     	.attr('width', xScale.bandwidth())
     	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
     	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
+      .call(tip);
 
   	//Axes
   	//var xAxis = d3.axisBottom().scale(xScale)
@@ -341,7 +407,7 @@ function bar3(viz4data1) {
 	//Y axis group
 	svg.append("g")
 		.attr("class","axis y-axis")
-		.call(yAxis.ticks(3));
+		.call(yAxis.ticks(2));
 
 
 	barX = function(d) { return xScale(d.business_id); };
@@ -399,10 +465,21 @@ function bar3(viz4data1) {
 	 	.attr('x2', width)
 	 	.attr('stroke-dasharray','1 1');
 
+   d3.selectAll('.bar')
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
 }
 
 function bar4(viz4data1) {
+
+  var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([40, 0])
+        .html(function(d) {
+          return "<strong>" + d["review_count"] + " Reviews</strong>" ;
+        })
+
 
 	//Margin, scales, and canvas
 	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
@@ -439,6 +516,7 @@ function bar4(viz4data1) {
     	.attr('width', xScale.bandwidth())
     	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
     	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
+      .call(tip);
 
   	//Axes
   	//var xAxis = d3.axisBottom().scale(xScale)
@@ -462,7 +540,7 @@ function bar4(viz4data1) {
 	//Y axis group
 	svg.append("g")
 		.attr("class","axis y-axis")
-		.call(yAxis.ticks(3));
+		.call(yAxis.ticks(2));
 
 
 	barX = function(d) { return xScale(d.business_id); };
@@ -520,10 +598,21 @@ function bar4(viz4data1) {
 	 	.attr('x2', width)
 	 	.attr('stroke-dasharray','1 1');
 
+    d3.selectAll('.bar')
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
 }
 
 function bar5(viz4data1) {
+
+  var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([40, 0])
+        .html(function(d) {
+          return "<strong>" + d["review_count"] + " Reviews</strong>" ;
+        })
+
 
 	//Margin, scales, and canvas
 	var margin = { top: 0, right: 20, bottom: 100, left: 40 },
@@ -560,6 +649,7 @@ function bar5(viz4data1) {
     	.attr('width', xScale.bandwidth())
     	.attr("height", function(d) { return Math.abs(yScale(0) - yScale(+d.zreview_count_all)); })
     	.attr("y", function(d) { return (height/2 - yScale(Math.min(0, +d.zreview_count_all)) + yScale(+d.zreview_count_all)) })
+      .call(tip);
 
   	//Axes
   	//var xAxis = d3.axisBottom().scale(xScale)
@@ -583,7 +673,7 @@ function bar5(viz4data1) {
 	//Y axis group
 	svg.append("g")
 		.attr("class","axis y-axis")
-		.call(yAxis.ticks(3));
+		.call(yAxis.ticks(2));
 
 
 	barX = function(d) { return xScale(d.business_id); };
@@ -641,5 +731,10 @@ function bar5(viz4data1) {
 	 	.attr('x2', width)
 	 	.attr('stroke-dasharray','1 1');
 
+    d3.selectAll('.bar')
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+
 
 }
+
