@@ -29,6 +29,25 @@
       Can this data be used to predict whether a restaurant is going to close?
       Let's see.</p>
     <p>In this series of visualisations, we will walk you through some key factors that influence a restaurant's closure. We use data from Yelp reviews for restaurants in Pheonix, AZ. We will show you both open and closed restaurants to help you understand what is happening.</p>
+    <section id="guess">
+      <div class="container">
+        <h2>Which of these restaurants do you think will close?</h2>
+        <div class="row">
+          <div class="col-md-3">
+            <a onclick="restSelected(this, 'a')">
+              <img src="img/restA.png" style="max-width:200px; margin-top: 30px; margin-bottom: 30px;">
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a onclick="restSelected(this, 'b')">
+              <img src="img/restB.png" style="max-width:200px; margin-top: 30px; margin-bottom: 30px;">
+            </a>
+          </div>
+        </div>
+        <p id="result">
+        </p>
+      </div>
+    </section>
     <section id="map-vis">
       <h2>No trends on the map</h2>
       <p>You might except to see a trend when you look at a map of the city. Maybe the restaurants closing are based more in downtown, maybe they are near an expensive location. Taking a look at the map of Pheonix below, we can't really make out a trend.</p>

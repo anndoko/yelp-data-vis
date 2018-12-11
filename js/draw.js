@@ -991,3 +991,12 @@ function createReviewChart(){
 
   }
 }
+
+function restSelected(element, selection) {
+  if (selection == 'a') {
+    $("#result").text("You are correct! Restaurant A is more likely to close. Let's see why.")
+  }
+  else {
+    $("#result").text("Uh oh! Restaurant A is more likely to close. Let's see why.")
+  }
+}
