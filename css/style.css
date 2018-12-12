@@ -52,6 +52,10 @@ h2 {
   fill: #C6C6C6;
 }
 
+.y_axis line{
+  stroke: #E7E7E7;
+}
+
 section {
   margin-bottom: 50px;
 }
